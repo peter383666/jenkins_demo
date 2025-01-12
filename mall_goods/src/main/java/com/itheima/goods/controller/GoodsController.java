@@ -15,7 +15,7 @@ public class GoodsController {
         if(StringUtils.isEmpty(id)){
             return "ID参数为空";
         }
-        return "find goods info OK";
+        return "find goods info OK 20250112 优化了code";
     }
 
 }
