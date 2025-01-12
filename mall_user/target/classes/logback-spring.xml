@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration scan="true" scanPeriod="60 seconds">
+
+	<shutdownHook class="ch.qos.logback.core.hook.DelayingShutdownHook"/>
+	<contextListener class="ch.qos.logback.classic.jul.LevelChangePropagator">
+		<resetJUL>true</resetJUL>
+	</contextListener>
+	<jmxConfigurator />
+	<!-- 日志目录 -->
+	<property name="LOG_HOME" value="/data/logs/mall" />
+	<!-- 控制台输出 -->
+	<appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+		<encoder>
+			<pattern>%d{yyyy-MM-dd HH:mm:ss,GMT+08:00} %5p [%t]
+				%replace(%caller{1}){'\t|Caller.{1}0|\r\n', ''} - %m%n</pattern>
+		</encoder>
+	</appender>
+
+	<!-- 开发环境、测试环境、生产环境  -->
+	<springProfile name="dev,test,prod">
+		<!-- 按照每天生成日志文件 -->
+		<appender name="MALLLOG" class="ch.qos.logback.core.rolling.RollingFileAppender">
+			<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+				<FileNamePattern>${LOG_HOME}/mall-user-%d{yyyyMMdd}-${HOSTNAME}.log</FileNamePattern>
+			</rollingPolicy>
+			<encoder>
+				<charset>UTF-8</charset>
+				<pattern>%d{yyyy-MM-dd HH:mm:ss,GMT+08:00} %5p [%t] [%C] - %m%n</pattern>
+			</encoder>
+		</appender>
+		<root level="INFO">
+			<appender-ref ref="STDOUT" />
+			<appender-ref ref="MALLLOG" />
+		</root>
+	</springProfile>
+</configuration>
