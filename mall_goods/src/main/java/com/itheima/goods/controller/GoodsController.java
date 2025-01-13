@@ -10,6 +10,8 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/goods")
 public class GoodsController {
 
+
+    //http://127.0.0.1:6002/goods/1
     @GetMapping("/{id}")
     public String info(@PathVariable("id")String id){
         if(StringUtils.isEmpty(id)){
