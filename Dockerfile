@@ -1,4 +1,4 @@
-FROM java:11
+FROM openjdk:11-jdk
 MAINTAINER wujintao@itcast.cn
 VOLUME /tmp
 ARG BUILD_NAME
