@@ -1,5 +1,5 @@
-FROM openjdk:11-jdk
-MAINTAINER wujintao@itcast.cn
+FROM openjdk:8-jdk-alpine
+MAINTAINER peter6666
 VOLUME /tmp
 ARG BUILD_NAME
 ADD $BUILD_NAME/target/$BUILD_NAME.jar app.jar
